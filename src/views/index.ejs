@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="login-form">
+            <h1 class="heading" id="loginHeader">OrbitFlow</h1>
+            <h2 id="loginSubtitle">Login</h2>
+            <form id="loginForm" onsubmit="return handleFirstStep(event);">
+                <div id="firstStep">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit">Next</button>
+                </div>
+                <div id="secondStep" class="fade-in hidden">
+                    <p>Are you sure you want to give access to OrbitFlow to access your name?</p>
+                    <button type="button" onclick="confirmAccess()">Yes</button>
+                    <button type="button" onclick="cancelAccess()">No</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleFirstStep(event) {
+            event.preventDefault(); 
+            document.getElementById('firstStep').classList.add('hidden');
+
+           
+            document.getElementById('loginHeader').classList.add('hidden');
+            document.getElementById('loginSubtitle').classList.add('hidden');
+
+            const secondStep = document.getElementById('secondStep');
+            secondStep.classList.remove('hidden'); 
+            setTimeout(() => {
+                secondStep.classList.add('visible'); 
+            }, 10); 
+        }
+
+        function confirmAccess() {
+            const form = document.getElementById('loginForm');
+            form.submit(); 
+        }
+
+        function cancelAccess() {
+            alert('Access denied.');
+        }
+    </script>
+</body>
+</html>
